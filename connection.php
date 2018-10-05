@@ -63,7 +63,7 @@ created_at TIMESTAMP
 )";
 
 if ($conn->query($authors) === TRUE) {
-    //echo "Table Authors created successfully"; echo "<br/>";
+   // echo "Table Authors created successfully"; echo "<br/>";
 } else {
     echo "Error creating table: " . $conn->error; echo "<br/>";
 }
@@ -71,7 +71,7 @@ if ($conn->query($authors) === TRUE) {
 $publishers = "CREATE TABLE IF NOT EXISTS  publishers (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(191),
-city VARCHAR(191,
+city VARCHAR(191),
 created_at TIMESTAMP
 )";
 
