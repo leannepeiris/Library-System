@@ -24,7 +24,7 @@ input /* style for the all input fields */
 }
 table /* style for the all tables */
 {
-    border-spacing: 50px;
+    border-spacing: 30px;
     border: 1px solid black;
 }
 th

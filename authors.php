@@ -63,15 +63,17 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
     </thead>
     <tbody>
         <?php while($row = $result->fetch_assoc()) { ?>
-            <tr>
+            <form action="functions.php" method="post"><tr>
                 <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["firstname"]; ?></td>
                 <td><?php echo $row["lastname"]; ?></td>
                 <td><?php echo $row["penname"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
                 <td><?php echo $row["publisher"]; ?></td>
-                <td><button class="iconBtn"><i class="fa fa-bars"></i></button>&ensp;<button class="iconBtn"><i class="fa fa-trash"></i></button></td>
-            </tr>
+                <input type="text" value="deleteAuthor" name="function" id="function" style="display: none; position: absolute" >
+                <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
+                <td><button class="iconBtn"><i class="fa fa-bars"></i></button>&ensp;<button class="iconBtn" name="deleteAuthor" id="deleteAuthor""><i class="fa fa-trash"></i></button></td>
+            </tr></form>
         <?php } ?>
     </tbody>
 </table></center>
