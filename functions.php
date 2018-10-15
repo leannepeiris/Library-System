@@ -27,6 +27,7 @@ function login()
         {
             session_start();
             $_SESSION["logged_in_user_id"] = $row['id'];
+            $_SESSION["logged_in_user_name"] = $row['firstname'];
             $_SESSION["type"] = $row['type'];
             header("location:home.php");
         }
