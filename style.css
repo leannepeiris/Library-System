@@ -50,3 +50,29 @@ input /* style for the all input fields */
 {
     background-color: darkgreen;
 }
+.navbar /* styles for the navigation bar */
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbarList /* styles for the list in the nav bar */
+{
+    float: left;
+}
+.navbarList a /* styles for the list links in the nav bar  */
+{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbarList a:hover /* styles for when the mouse hovers over the links in the nav bar  */
+{
+    background-color: #111;
+}

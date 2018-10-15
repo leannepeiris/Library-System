@@ -1,6 +1,5 @@
 <?php
-session_start();
+include ("header.php");
 ?>
 
-<h1>Home</h1></Home>
-<h1><?php echo $_SESSION["type"]; ?></h1>
+<h1>Dashboard</h1></Home>
