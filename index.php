@@ -1,7 +1,6 @@
 <?php
-//include ("connection.php");
+include ("connection.php");
 ?>
-
 <style>
     <?php include ("style.css") ?>
 </style>

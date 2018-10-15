@@ -17,14 +17,20 @@ function login()
     $myusername=$_POST['username'];
     $mypassword=$_POST['password'];
 
-    $sql = "SELECT * FROM employees WHERE email='$myusername' AND  passwords='$mypassword'";
-
+    $sql = "SELECT * FROM employees WHERE email='$myusername' AND  password='$mypassword'";
 
     $result = mysqli_query($conn, $sql);
 
     if ($result->num_rows > 0)
     {
-        header("location:home.php");
+        if ($row = $result->fetch_assoc())
+        {
+            session_start();
+            $_SESSION["logged_in_user_id"] = $row['id'];
+            $_SESSION["type"] = $row['type'];
+            header("location:home.php");
+        }
+
     } else {
         echo "0 results";
     }
