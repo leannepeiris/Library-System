@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+
+body /* background style for all pages */
+{
+    background-color: bisque;
+}
+h1 /* style for the headings */
+{
+    font-family: "Modern No. 20";
+    font-size: 50px;
+    font-palette: dark;
+}
+label /* style for the all labels */
+{
+    font-family: "Modern No. 20";
+    font-size: 25px;
+}
+input /* style for the all input fields */
+{
+    font-family: "Modern No. 20";
+    width: 13pc;
+    height: 2pc;
+}
+.loginBox /* style for the login box */
+{
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 200px;
+    border: 25px solid indigo;
+    padding: 25px;
+}
+.loginButton /* style for the login button */
+{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 1px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    width: 13pc;
+    font-family: "Modern No. 20";
+}
+.loginButton:hover /* styles for when the mouse hovers over the login button */
+{
+    background-color: darkgreen;
+}
