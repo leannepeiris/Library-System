@@ -27,6 +27,7 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(191),
 lastname VARCHAR(191),
 email VARCHAR(191),
+passwords VARCHAR(191),
 contact_number VARCHAR(191),
 date_of_birth VARCHAR(191),
 created_at TIMESTAMP
@@ -113,4 +114,6 @@ if ($conn->query($borrowed_books) === TRUE) {
 } else {
     echo "Error creating table: " . $conn->error; echo "<br/>";
 }
+
+
 
