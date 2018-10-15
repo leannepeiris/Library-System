@@ -63,6 +63,18 @@ else if($_POST['function'] == 'deleteCustomer')
 {
     deleteCustomer();
 }
+else if($_POST['function'] == 'addEmployee')
+{
+    addEmployee();
+}
+else if($_POST['function'] == 'editEmployee')
+{
+    editEmployee();
+}
+else if($_POST['function'] == 'deleteEmployee')
+{
+    deleteEmployee();
+}
 function login()
 {
     $myusername=$_POST['username'];
@@ -278,6 +290,61 @@ function deleteCustomer()
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "Record deleted successfully";
         header("location:customers.php");
+    } else {
+        echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
+
+function addEmployee()
+{
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $contact_no = $_POST['contact_no'];
+    $date_of_birth = $_POST['date_of_birth'];
+    $type = $_POST['$type'];
+
+    $sql = "INSERT INTO employees (firstname, lastname, email, password, contact_number, date_of_birth, type)
+    VALUES ('$firstname', '$lastname', '$email', '$password', '$contact_no', '$date_of_birth', '$type')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+        header("location:employees.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function editEmployee()
+{
+    $id = $_POST['id'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $contact_no = $_POST['contact_no'];
+    $date_of_birth = $_POST['date_of_birth'];
+    $type = $_POST['$type'];
+
+    $sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password' , contact_number = '$contact_no' , date_of_birth = '$date_of_birth' , type = '$type' WHERE id = '$id'";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        header("location:employees.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function deleteEmployee()
+{
+    $id = $_POST['id'];
+    $sql = "DELETE FROM employees WHERE id = $id";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header("location:employees.php");
     } else {
         echo "Error deleting record: " . $GLOBALS['conn']->error;
     }

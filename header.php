@@ -22,6 +22,6 @@ session_start();
     <li class="navbarList"><a href="publishers.php">Publishers</a></li>
     <li class="navbarList"><a href="books.php">Books</a></li>
     <li class="navbarList"><a href="customers.php">Customers</a></li>
-    <li <?php if($_SESSION["type"] == "employee") { ?> style="display: none" <?php } ?> class="navbarList"><a href="#employees">Employees</a></li>
+    <li <?php if($_SESSION["type"] == "employee") { ?> style="display: none" <?php } ?> class="navbarList"><a href="employees.php">Employees</a></li>
     <li class="navbarList" style="float: right"><a href="#account">Hello, <?php echo $_SESSION["logged_in_user_name"]; ?></a></li> <!-- add dropdown box here to go to account and to logout -->
 </ul>
