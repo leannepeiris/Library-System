@@ -51,6 +51,18 @@ else if($_POST['function'] == 'deletePublisher')
 {
     deletePublisher();
 }
+else if($_POST['function'] == 'addCustomer')
+{
+    addCustomer();
+}
+else if($_POST['function'] == 'editCustomer')
+{
+    editCustomer();
+}
+else if($_POST['function'] == 'deleteCustomer')
+{
+    deleteCustomer();
+}
 function login()
 {
     $myusername=$_POST['username'];
@@ -222,3 +234,51 @@ function deletePublisher()
     }
 }
 
+function addCustomer()
+{
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $contact_no = $_POST['contact_no'];
+
+    $sql = "INSERT INTO customers (firstname, lastname, email, contact_number)
+    VALUES ('$firstname', '$lastname', '$email', '$contact_no')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+        header("location:customers.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function editCustomer()
+{
+    $id = $_POST['id'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $contact_no = $_POST['contact_no'];
+
+    $sql = "UPDATE customers SET firstname = '$firstname', lastname = '$lastname', email = '$email', contact_number = '$contact_no' WHERE id = '$id'";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        header("location:customers.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function deleteCustomer()
+{
+    $id = $_POST['id'];
+    $sql = "DELETE FROM customers WHERE id = $id";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header("location:customers.php");
+    } else {
+        echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
