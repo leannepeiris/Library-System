@@ -27,9 +27,10 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 firstname VARCHAR(191),
 lastname VARCHAR(191),
 email VARCHAR(191),
-passwords VARCHAR(191),
+password VARCHAR(191),
 contact_number VARCHAR(191),
 date_of_birth VARCHAR(191),
+type VARCHAR(191),
 created_at TIMESTAMP
 )";
 
