@@ -27,7 +27,18 @@ else if($_POST['function'] == 'deleteAuthor')
 {
     deleteAuthor();
 }
-
+else if($_POST['function'] == 'addBook')
+{
+    addBook();
+}
+else if($_POST['function'] == 'editBook')
+{
+    editBook();
+}
+else if($_POST['function'] == 'deleteBook')
+{
+    deleteBook();
+}
 function login()
 {
     $myusername=$_POST['username'];
@@ -105,5 +116,53 @@ function deleteAuthor()
     }
 }
 
+function addBook()
+{
+    $title = $_POST['title'];
+    $genre = $_POST['genre'];
+    $author = $_POST['author'];
+    $publisher = $_POST['publisher'];
+
+    $sql = "INSERT INTO books (title, genre, author, publisher)
+    VALUES ('$title', '$genre', '$author', '$publisher')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+        header("location:books.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function editBook()
+{
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $genre = $_POST['genre'];
+    $author = $_POST['author'];
+    $publisher = $_POST['publisher'];
+
+    $sql = "UPDATE books SET title = '$title', genre = '$genre', author = '$author', publisher = '$publisher' WHERE id = '$id'";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        header("location:books.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function deleteBook()
+{
+    $id = $_POST['id'];
+    $sql = "DELETE FROM books WHERE id = $id";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header("location:books.php");
+    } else {
+        echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
 
 
