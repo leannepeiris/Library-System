@@ -5,21 +5,24 @@ $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
 $dbname = "library";
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 if($_POST['function'] == 'login')
 {
     login();
 }
+else if($_POST['function'] == 'addAuthor')
+{
+    addAuthor();
+}
 function login()
 {
-    $conn = mysqli_connect($GLOBALS['dbhost'], $GLOBALS['dbuser'], $GLOBALS['dbpass'], $GLOBALS['dbname']);
-
     $myusername=$_POST['username'];
     $mypassword=$_POST['password'];
 
     $sql = "SELECT * FROM employees WHERE email='$myusername' AND  password='$mypassword'";
 
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($GLOBALS['conn'], $sql);
 
     if ($result->num_rows > 0)
     {
@@ -35,9 +38,25 @@ function login()
     } else {
         header("location:index.php");
     }
+    $GLOBALS['conn']->close();
+}
 
-    $conn->close();
+function addAuthor()
+{
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $penname = $_POST['penname'];
+    $genre = $_POST['genre'];
+    $publisher = $_POST['publisher'];
 
+    $sql = "INSERT INTO authors (firstname, lastname, penname, genre, publisher)
+    VALUES ('$firstname', '$lastname', '$penname', '$genre', '$publisher')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
 }
 
 

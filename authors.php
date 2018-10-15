@@ -10,7 +10,7 @@ include ("header.php");
 <div id="newAuthorDiv" style="display: none">
     <h1>Add New Author</h1>
     <center><div style="width: 90pc">
-    <form style="width: content-box" action="functions.php?addAuthor">
+    <form style="width: content-box" action="functions.php" method="post">
         <div style="position: absolute">
             <label>First Name</label><br/>
             <input type="text" id="firstname" name="firstname" style="width: 40pc"><br/><br/>
@@ -37,7 +37,7 @@ include ("header.php");
             <input type="text" id="publisher" name="publisher" style="width: 40pc"><br/><br/><br/>
         </div><br/><br/><br/><br/><br/><br/>
 
-        <input type="text" value="addAuthor" hidden>
+        <input type="text" value="addAuthor" name="function" id="function" style="display: none" > <br/><br/>
         <input type="submit" value="Save Details" class="loginButton"  style="width: 90pc; height: 45px">
     </form>
     </div></center>
@@ -47,7 +47,6 @@ include ("header.php");
 <h1>view or edit authors</h1>
 </div>
 
-<?php include ("footer.php"); ?>
 
 <script>
 function newAuthor() {

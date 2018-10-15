@@ -16,7 +16,7 @@ session_start();
 
 <ul class="navbar">
     <li class="navbarList"><a href="#dashboard">Dashboard</a></li>
-    <li class="navbarList"><a href="#authors">Authors</a></li>
+    <li class="navbarList"><a href="authors.php">Authors</a></li>
     <li class="navbarList"><a href="#publishers">Publishers</a></li>
     <li class="navbarList"><a href="#books">Books</a></li>
     <li class="navbarList"><a href="#customers">Customers</a></li>

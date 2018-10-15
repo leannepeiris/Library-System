@@ -59,6 +59,7 @@ $authors = "CREATE TABLE IF NOT EXISTS  authors (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 firstname VARCHAR(191),
 lastname VARCHAR(191),
+penname VARCHAR(191),
 genre VARCHAR(191),
 publisher VARCHAR(191),
 created_at TIMESTAMP
