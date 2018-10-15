@@ -1,5 +1,9 @@
 <?php
 include ("header.php");
+
+$sql = "SELECT * FROM authors";
+$result = mysqli_query($GLOBALS['conn'], $sql);
+
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -44,7 +48,33 @@ include ("header.php");
 </div>
 
 <div id="viewAuthorDiv">
-<h1>view or edit authors</h1>
+<h1>All Authors</h1>
+<center><table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Pen Name</th>
+        <th>Genre</th>
+        <th>Publisher</th>
+        <th>Options</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php while($row = $result->fetch_assoc()) { ?>
+            <tr>
+                <td><?php echo $row["id"]; ?></td>
+                <td><?php echo $row["firstname"]; ?></td>
+                <td><?php echo $row["lastname"]; ?></td>
+                <td><?php echo $row["penname"]; ?></td>
+                <td><?php echo $row["genre"]; ?></td>
+                <td><?php echo $row["publisher"]; ?></td>
+                <td><button class="iconBtn"><i class="fa fa-bars"></i></button>&ensp;<button class="iconBtn"><i class="fa fa-trash"></i></button></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table></center>
 </div>
 
 

@@ -22,6 +22,21 @@ input /* style for the all input fields */
     width: 13pc;
     height: 2pc;
 }
+table /* style for the all tables */
+{
+    border-spacing: 50px;
+    border: 1px solid black;
+}
+th
+{
+    font-family: "Modern No. 20";
+    font-size: 30px;
+}
+td
+{
+    font-family: "Modern No. 20";
+    font-size: 25px;
+}
 .loginBox /* style for the login box */
 {
     position: absolute;
@@ -90,4 +105,17 @@ input /* style for the all input fields */
 .sidenavList a:hover {
     background-color: #555;
     color: white;
+}
+.iconBtn {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.iconBtn:hover {
+    background-color: RoyalBlue;
 }

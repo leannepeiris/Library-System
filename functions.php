@@ -54,6 +54,8 @@ function addAuthor()
 
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "New record created successfully";
+        header("location:authors.php");
+
     } else {
         echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
     }
