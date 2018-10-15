@@ -19,7 +19,7 @@ session_start();
 <ul class="navbar">
     <li class="navbarList"><a href="home.php">Dashboard</a></li>
     <li class="navbarList"><a href="authors.php">Authors</a></li>
-    <li class="navbarList"><a href="#publishers">Publishers</a></li>
+    <li class="navbarList"><a href="publishers.php">Publishers</a></li>
     <li class="navbarList"><a href="books.php">Books</a></li>
     <li class="navbarList"><a href="#customers">Customers</a></li>
     <li <?php if($_SESSION["type"] == "employee") { ?> style="display: none" <?php } ?> class="navbarList"><a href="#employees">Employees</a></li>

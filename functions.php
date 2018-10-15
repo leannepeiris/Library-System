@@ -39,6 +39,18 @@ else if($_POST['function'] == 'deleteBook')
 {
     deleteBook();
 }
+else if($_POST['function'] == 'addPublisher')
+{
+    addPublisher();
+}
+else if($_POST['function'] == 'editPublisher')
+{
+    editPublisher();
+}
+else if($_POST['function'] == 'deletePublisher')
+{
+    deletePublisher();
+}
 function login()
 {
     $myusername=$_POST['username'];
@@ -165,4 +177,48 @@ function deleteBook()
     }
 }
 
+function addPublisher()
+{
+    $name = $_POST['name'];
+    $city = $_POST['city'];
+
+    $sql = "INSERT INTO publishers (name, city)
+    VALUES ('$name', '$city')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+        header("location:publishers.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function editPublisher()
+{
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $city = $_POST['city'];
+
+    $sql = "UPDATE publishers SET name = '$name', city = '$city' WHERE id = '$id'";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        header("location:publishers.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function deletePublisher()
+{
+    $id = $_POST['id'];
+    $sql = "DELETE FROM publishers WHERE id = $id";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header("location:publishers.php");
+    } else {
+        echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
 
