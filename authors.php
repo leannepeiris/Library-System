@@ -4,6 +4,8 @@ include ("header.php");
 $sql = "SELECT * FROM authors";
 $result = mysqli_query($GLOBALS['conn'], $sql);
 
+$publisherSql = "SELECT * FROM publishers";
+$publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -38,7 +40,11 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
 
         <div style="position: absolute">
             <label>Publisher</label><br/>
-            <input type="text" id="publisher" name="publisher" style="width: 40pc"><br/><br/><br/>
+            <select id="publisher" name="publisher" style="width: 40pc">
+                <?php while($row = $publishers->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['name']; ?>"><?php echo $row["name"]; ?></option>
+                <?php } ?>
+            </select>
         </div><br/><br/><br/><br/><br/><br/>
 
         <input type="text" value="addAuthor" name="function" id="function" style="display: none" > <br/><br/>

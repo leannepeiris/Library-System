@@ -1,9 +1,14 @@
 <?php
 include ("header.php");
 
-$sql = "SELECT * FROM books";
-$result = mysqli_query($GLOBALS['conn'], $sql);
+$allBooksSql = "SELECT * FROM books";
+$books = mysqli_query($GLOBALS['conn'], $allBooksSql);
 
+$authorSql = "SELECT * FROM authors";
+$authors = mysqli_query($GLOBALS['conn'], $authorSql);
+
+$publisherSql = "SELECT * FROM publishers";
+$publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -27,13 +32,21 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
 
         <div style="position: absolute">
             <label>Author</label><br/>
-            <input type="text" id="author" name="author" style="width: 40pc"><br/><br/>
+            <select id="author" name="author" style="width: 40pc">
+                <?php while($row = $authors->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['penname']; ?>"><?php echo $row["penname"]; ?></option>
+                <?php } ?>
+            </select>
 
         </div>
 
         <div style="float: right;">
             <label>Publisher</label><br/>
-            <input type="text" id="publisher" name="publisher" style="width: 40pc"><br/><br/>
+            <select id="publisher" name="publisher" style="width: 40pc">
+                <?php while($row = $publishers->fetch_assoc()) { ?>
+                    <option value="<?php echo $row['name']; ?>"><?php echo $row["name"]; ?></option>
+                <?php } ?>
+            </select>
         </div><br/><br/><br/><br/><br/><br/>
 
         <input type="text" value="addBook" name="function" id="function" style="display: none" > <br/><br/>
@@ -56,7 +69,7 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
     </tr>
     </thead>
     <tbody>
-        <?php while($row = $result->fetch_assoc()) { ?>
+        <?php while($row = $books->fetch_assoc()) { ?>
             <form action="functions.php" method="post"><tr>
                 <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["title"]; ?></td>
