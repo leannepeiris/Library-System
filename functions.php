@@ -100,7 +100,8 @@ function login()
         }
 
     } else {
-        return;
+        $data = "Incorrect";
+        header("location:index.php?data=".$data);
     }
     $GLOBALS['conn']->close();
 }

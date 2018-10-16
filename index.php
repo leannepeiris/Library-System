@@ -1,5 +1,10 @@
 <?php
 include ("connection.php");
+
+if(isset($_GET['data'])){
+    $message = "Incorrect Credientials Please Try Again";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
 ?>
 <style>
     <?php include ("style.css") ?>
