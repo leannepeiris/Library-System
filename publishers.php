@@ -50,7 +50,7 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
                         <td><?php echo $row["city"]; ?></td>
                         <input type="text" value="deletePublisher" name="function" id="function" style="display: none; position: absolute" >
                         <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                        <td><button class="iconBtn"><i class="fa fa-bars"></i></button>&ensp;<button class="iconBtn" name="deletePublisher" id="deletePublisher""><i class="fa fa-trash"></i></button></td>
+                        <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deletePublisher" id="deletePublisher"><i class="fa fa-trash"></i></button></td>
                     </tr></form>
             <?php } ?>
             </tbody>
