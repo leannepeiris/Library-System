@@ -103,10 +103,10 @@ $borrowed_books = "CREATE TABLE IF NOT EXISTS  borrowed_books (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     book VARCHAR(191) NOT NULL,
     customer VARCHAR(191) NOT NULL,
-    borrowed_date TIMESTAMP,
+    borrowed_date VARCHAR(191),
     due_date VARCHAR(191),
-    overdue VARCHAR(191),
     overdue_charge VARCHAR(191),
+    status VARCHAR(191),
     created_at TIMESTAMP
 )";
 

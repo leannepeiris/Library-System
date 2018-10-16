@@ -380,11 +380,11 @@ function addBorrowedBook()
     $customer = $_POST['customer'];
     $borrowed_date = $_POST['borrowed_date'];
     $due_date = $_POST['due_date'];
-    $overdue = null;
     $overdue_charge = $_POST['overdue_charge'];
+    $status = 0;
 
-    $sql = "INSERT INTO borrowed_books (book, customer, borrowed_date, due_date, overdue, overdue_charge)
-    VALUES ('$book', '$customer', '$borrowed_date', '$due_date', '$overdue', '$overdue_charge')";
+    $sql = "INSERT INTO borrowed_books (book, customer, borrowed_date, due_date, overdue_charge, status)
+    VALUES ('$book', '$customer', '$borrowed_date', '$due_date', '$overdue_charge', '$status')";
 
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -401,10 +401,9 @@ function editBorrowedBook()
     $customer = $_POST['customer'];
     $borrowed_date = $_POST['borrowed_date'];
     $due_date = $_POST['due_date'];
-    $overdue = $_POST['overdue'];
     $overdue_charge = $_POST['overdue_charge'];
 
-    $sql = "UPDATE borrowed_books SET book = '$book', customer = '$customer', borrowed_date = '$borrowed_date', due_date = '$due_date', overdue = '$overdue' , overdue_charge = '$overdue_charge' WHERE id = '$id'";
+    $sql = "UPDATE borrowed_books SET book = '$book', customer = '$customer', borrowed_date = '$borrowed_date', due_date = '$due_date', overdue_charge = '$overdue_charge' WHERE id = '$id'";
 
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "Record updated successfully";
