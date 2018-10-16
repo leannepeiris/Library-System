@@ -1,8 +1,11 @@
 <?php
 include ("header.php");
 
-$sql = "SELECT * FROM borrowed_books";
+$sql = "SELECT * FROM borrowed_books WHERE 'status' != 2";
 $result = mysqli_query($GLOBALS['conn'], $sql);
+
+$historySql = "SELECT * FROM borrowed_books WHERE 'status' = 2";
+$history = mysqli_query($GLOBALS['conn'], $sql);
 
 $booksSql = "SELECT * FROM books";
 $books = mysqli_query($GLOBALS['conn'], $booksSql);
@@ -98,7 +101,7 @@ $status = [
             </tr>
             </thead>
             <tbody>
-            <?php while($row = $result->fetch_assoc()) { if($row['status'] != 2) { ?>
+            <?php while($row = $result->fetch_assoc()){ ?>
                 <form action="functions.php" method="post"><tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $GLOBALS['bookNames'][$row["book"]]; ?></td>
@@ -111,7 +114,7 @@ $status = [
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td>
                 </tr></form>
-            <?php } } ?>
+            <?php } ?>
             </tbody>
         </table></center>
 </div>
@@ -132,7 +135,7 @@ $status = [
             </tr>
             </thead>
             <tbody>
-            <?php while($row = $result->fetch_assoc()) { if($row['status'] == 2) { ?>
+            <?php while($row = $history->fetch_assoc()) { ?>
                 <form action="functions.php" method="post"><tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["book"]; ?></td>
@@ -145,7 +148,7 @@ $status = [
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td>
                 </tr></form>
-            <?php } } ?>
+            <?php } ?>
             </tbody>
         </table></center>
 </div>
