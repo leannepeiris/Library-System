@@ -55,8 +55,8 @@ $status = [
                 <div style="float: right;">
                     <label>Customer</label><br/>
                     <select id="customer" name="customer" style="width: 40pc">
-                        <?php foreach ($customerNames as $key => $name) { { ?>
-                            <option value="<?php echo $key; ?>"><?php echo $name; ?></option
+                        <?php foreach ($customerNames as $key => $name) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                         <?php } ?>
                     </select>
                 </div><br/><br/><br/><br/>
@@ -139,7 +139,7 @@ $status = [
                     <td><?php echo $row["customer"]; ?></td>
                     <td><?php echo $row["borrowed_date"]; ?></td>
                     <td><?php echo $row["due_date"]; ?></td>
-                    <td><?php if ($row["overdue_charge"] == null) { echo "No Charge"; } else echo $row["overdue_charge"] ?></td>
+                    <td><?php if ($row["overdue_charge"] == null) { echo "No Charge"; } else echo $row["overdue_charge"]; ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
                     <input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
@@ -178,5 +178,3 @@ $status = [
         document.getElementById('newBorrowedDiv').style.display = 'none';
     }
 </script>
-
-
