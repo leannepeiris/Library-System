@@ -29,7 +29,7 @@ session_start();
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="#">Log Out</a>
+                <a href="functions.php">Log Out</a>
             </div>
         </div>
     </li>

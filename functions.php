@@ -75,6 +75,10 @@ else if($_POST['function'] == 'deleteEmployee')
 {
     deleteEmployee();
 }
+else 
+{
+    logout();
+}
 function login()
 {
     $myusername=$_POST['username'];
@@ -96,9 +100,16 @@ function login()
         }
 
     } else {
-        header("location:index.php");
+        return;
     }
     $GLOBALS['conn']->close();
+}
+
+function logout()
+{
+    session_unset(); 
+    session_destroy(); 
+    header("location:index.php");
 }
 
 function addAuthor()

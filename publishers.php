@@ -1,4 +1,9 @@
 <?php
+if (empty($_SESSION["logged_in_user"]))
+{
+    header("location:index.php");
+}
+
 include ("header.php");
 
 $sql = "SELECT * FROM publishers";
