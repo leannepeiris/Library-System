@@ -6,6 +6,15 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
 
 $publisherSql = "SELECT * FROM publishers";
 $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
+
+$publisherNames = [];
+while($row = $publishers->fetch_assoc()) {
+    $names = [
+        $row['id'] => $row['name']
+    ];
+    $publisherNames = $names + $publisherNames;
+}
+
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -30,7 +39,6 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
         <div style="position: absolute">
             <label>Pen Name</label><br/>
             <input type="text" id="penname" name="penname" style="width: 40pc"><br/><br/>
-
         </div>
 
         <div style="float: right;">
@@ -41,8 +49,8 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
         <div style="position: absolute">
             <label>Publisher</label><br/>
             <select id="publisher" name="publisher" style="width: 40pc">
-                <?php while($row = $publishers->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['name']; ?>"><?php echo $row["name"]; ?></option>
+                <?php foreach ($publisherNames as $key => $name) { ?>
+                    <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                 <?php } ?>
             </select>
         </div><br/><br/><br/><br/><br/><br/>
@@ -75,7 +83,7 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
                 <td><?php echo $row["lastname"]; ?></td>
                 <td><?php echo $row["penname"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
-                <td><?php echo $row["publisher"]; ?></td>
+                <td><?php echo $GLOBALS['publisherNames'][$row["publisher"]]; ?></td>
                 <input type="text" value="deleteAuthor" name="function" id="function" style="display: none; position: absolute" >
                 <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                 <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteAuthor" id="deleteAuthor"><i class="fa fa-trash"></i></button></td>
@@ -84,7 +92,6 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
     </tbody>
 </table></center>
 </div>
-
 
 <script>
 function newAuthor() {
@@ -101,5 +108,3 @@ function viewAuthors() {
     document.getElementById('newAuthorDiv').style.display = 'none';
 }
 </script>
-
-

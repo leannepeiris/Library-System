@@ -7,8 +7,25 @@ $books = mysqli_query($GLOBALS['conn'], $allBooksSql);
 $authorSql = "SELECT * FROM authors";
 $authors = mysqli_query($GLOBALS['conn'], $authorSql);
 
+$authorNames = [];
+while($row = $authors->fetch_assoc()) {
+    $names = [
+        $row['id'] => $row['penname']
+    ];
+    $authorNames = $names + $authorNames;
+}
+
 $publisherSql = "SELECT * FROM publishers";
 $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
+
+$publisherNames = [];
+while($row = $publishers->fetch_assoc()) {
+    $names = [
+        $row['id'] => $row['name']
+    ];
+    $publisherNames = $names + $publisherNames;
+}
+
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -33,8 +50,8 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
         <div style="position: absolute">
             <label>Author</label><br/>
             <select id="author" name="author" style="width: 40pc">
-                <?php while($row = $authors->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['penname']; ?>"><?php echo $row["penname"]; ?></option>
+                <?php foreach ($authorNames as $key => $name) { ?>
+                    <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                 <?php } ?>
             </select>
 
@@ -43,8 +60,8 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
         <div style="float: right;">
             <label>Publisher</label><br/>
             <select id="publisher" name="publisher" style="width: 40pc">
-                <?php while($row = $publishers->fetch_assoc()) { ?>
-                    <option value="<?php echo $row['name']; ?>"><?php echo $row["name"]; ?></option>
+                <?php foreach ($publisherNames as $key => $name) { ?>
+                    <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                 <?php } ?>
             </select>
         </div><br/><br/><br/><br/><br/><br/>
@@ -74,8 +91,8 @@ $publishers = mysqli_query($GLOBALS['conn'], $publisherSql);
                 <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["title"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
-                <td><?php echo $row["author"]; ?></td>
-                <td><?php echo $row["publisher"]; ?></td>
+                <td><?php echo $GLOBALS['authorNames'][$row["author"]]; ?></td>
+                <td><?php echo $GLOBALS['publisherNames'][$row["publisher"]]; ?></td>
                 <input type="text" value="deleteBook" name="function" id="function" style="display: none; position: absolute" >
                 <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                 <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBook" id="deleteBook"><i class="fa fa-trash"></i></button></td>
@@ -101,5 +118,3 @@ function viewBooks() {
     document.getElementById('newBookDiv').style.display = 'none';
 }
 </script>
-
-
