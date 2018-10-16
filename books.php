@@ -53,8 +53,7 @@ while($row = $publishers->fetch_assoc()) {
                 <?php foreach ($authorNames as $key => $name) { ?>
                     <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                 <?php } ?>
-            </select>
-
+                </select>
         </div>
 
         <div style="float: right;">
@@ -82,39 +81,39 @@ while($row = $publishers->fetch_assoc()) {
         <th>Genre</th>
         <th>Author</th>
         <th>Publisher</th>
-        <th>Options</th>
+        <th colspan="2">Options</th>
     </tr>
     </thead>
     <tbody>
         <?php while($row = $books->fetch_assoc()) { ?>
-            <form action="functions.php" method="post"><tr>
+            <tr>
                 <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["title"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
                 <td><?php echo $GLOBALS['authorNames'][$row["author"]]; ?></td>
                 <td><?php echo $GLOBALS['publisherNames'][$row["publisher"]]; ?></td>
-                <input type="text" value="deleteBook" name="function" id="function" style="display: none; position: absolute" >
+                <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                <form action="functions.php" method="post"> <input type="text" value="deleteBook" name="function" id="function" style="display: none; position: absolute" >
                 <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBook" id="deleteBook"><i class="fa fa-trash"></i></button></td>
-            </tr></form>
+                <td><button class="iconBtn" name="deleteBook" id="deleteBook"><i class="fa fa-trash"></i></button></td></form>
+            </tr>
         <?php } ?>
     </tbody>
 </table></center>
 </div>
 
-
 <script>
-function newBook() {
-    document.getElementById('viewBookDiv').style.display = 'none';
-    document.getElementById('newBookbtn').style.display = 'none';
-    document.getElementById('bookbtn').style.display = 'block';
-    document.getElementById('newBookDiv').style.display = 'block';
-}
+    function newBook() {
+        document.getElementById('viewBookDiv').style.display = 'none';
+        document.getElementById('newBookbtn').style.display = 'none';
+        document.getElementById('bookbtn').style.display = 'block';
+        document.getElementById('newBookDiv').style.display = 'block';
+    }
 
-function viewBooks() {
-    document.getElementById('viewBookDiv').style.display = 'block';
-    document.getElementById('newBookbtn').style.display = 'block';
-    document.getElementById('bookbtn').style.display = 'none';
-    document.getElementById('newBookDiv').style.display = 'none';
-}
+    function viewBooks() {
+        document.getElementById('viewBookDiv').style.display = 'block';
+        document.getElementById('newBookbtn').style.display = 'block';
+        document.getElementById('bookbtn').style.display = 'none';
+        document.getElementById('newBookDiv').style.display = 'none';
+    }
 </script>

@@ -52,26 +52,26 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Contact Number</th>
-                <th>Options</th>
+                <th colspan="2">Options</th>
             </tr>
             </thead>
             <tbody>
             <?php while($row = $result->fetch_assoc()) { ?>
-                <form action="functions.php" method="post"><tr>
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["firstname"]; ?></td>
-                        <td><?php echo $row["lastname"]; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td><?php echo $row["contact_number"]; ?></td>
-                        <input type="text" value="deleteCustomer" name="function" id="function" style="display: none; position: absolute" >
-                        <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                        <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteCustomer" id="deleteCustomer"><i class="fa fa-trash"></i></button></td>
-                    </tr></form>
+                <tr>
+                    <td><?php echo $row["id"]; ?></td>
+                    <td><?php echo $row["firstname"]; ?></td>
+                    <td><?php echo $row["lastname"]; ?></td>
+                    <td><?php echo $row["email"]; ?></td>
+                    <td><?php echo $row["contact_number"]; ?></td>
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                    <form action="functions.php" method="post"><input type="text" value="deleteCustomer" name="function" id="function" style="display: none; position: absolute" >
+                    <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
+                    <td><button class="iconBtn" name="deleteCustomer" id="deleteCustomer"><i class="fa fa-trash"></i></button></td></form>
+                    </tr>
             <?php } ?>
             </tbody>
         </table></center>
 </div>
-
 
 <script>
     function newCustomer() {
@@ -88,5 +88,3 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
         document.getElementById('newCustomerDiv').style.display = 'none';
     }
 </script>
-
-

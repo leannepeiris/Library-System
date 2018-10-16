@@ -39,19 +39,20 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
                 <th>ID</th>
                 <th>Name</th>
                 <th>City</th>
-                <th>Options</th>
+                <th colspan="2">Options</th>
             </tr>
             </thead>
             <tbody>
             <?php while($row = $result->fetch_assoc()) { ?>
-                <form action="functions.php" method="post"><tr>
-                        <td><?php echo $row["id"]; ?></td>
-                        <td><?php echo $row["name"]; ?></td>
-                        <td><?php echo $row["city"]; ?></td>
-                        <input type="text" value="deletePublisher" name="function" id="function" style="display: none; position: absolute" >
-                        <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                        <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deletePublisher" id="deletePublisher"><i class="fa fa-trash"></i></button></td>
-                    </tr></form>
+                <tr>
+                    <td><?php echo $row["id"]; ?></td>
+                    <td><?php echo $row["name"]; ?></td>
+                    <td><?php echo $row["city"]; ?></td>
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                    <form action="functions.php" method="post"><input type="text" value="deletePublisher" name="function" id="function" style="display: none; position: absolute" >
+                    <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
+                    <td><button class="iconBtn" name="deletePublisher" id="deletePublisher"><i class="fa fa-trash"></i></button></td></form>
+                    </tr>
             <?php } ?>
             </tbody>
         </table></center>

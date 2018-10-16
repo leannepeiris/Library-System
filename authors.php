@@ -72,39 +72,39 @@ while($row = $publishers->fetch_assoc()) {
         <th>Pen Name</th>
         <th>Genre</th>
         <th>Publisher</th>
-        <th>Options</th>
+        <th colspan="2">Options</th>
     </tr>
     </thead>
     <tbody>
         <?php while($row = $result->fetch_assoc()) { ?>
-            <form action="functions.php" method="post"><tr>
+            <tr>
                 <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["firstname"]; ?></td>
                 <td><?php echo $row["lastname"]; ?></td>
                 <td><?php echo $row["penname"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
                 <td><?php echo $GLOBALS['publisherNames'][$row["publisher"]]; ?></td>
-                <input type="text" value="deleteAuthor" name="function" id="function" style="display: none; position: absolute" >
+                <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                <form action="functions.php" method="post"><input type="text" value="deleteAuthor" name="function" id="function" style="display: none; position: absolute" >
                 <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteAuthor" id="deleteAuthor"><i class="fa fa-trash"></i></button></td>
-            </tr></form>
+                <td><button class="iconBtn" name="deleteAuthor" id="deleteAuthor"><i class="fa fa-trash"></i></button></td></form>
+            </tr>
         <?php } ?>
     </tbody>
 </table></center>
 </div>
 
 <script>
-function newAuthor() {
-    document.getElementById('viewAuthorDiv').style.display = 'none';
-    document.getElementById('newAuthorbtn').style.display = 'none';
-    document.getElementById('authorbtn').style.display = 'block';
-    document.getElementById('newAuthorDiv').style.display = 'block';
-}
-
-function viewAuthors() {
-    document.getElementById('viewAuthorDiv').style.display = 'block';
-    document.getElementById('newAuthorbtn').style.display = 'block';
-    document.getElementById('authorbtn').style.display = 'none';
-    document.getElementById('newAuthorDiv').style.display = 'none';
-}
+    function newAuthor() {
+        document.getElementById('viewAuthorDiv').style.display = 'none';
+        document.getElementById('newAuthorbtn').style.display = 'none';
+        document.getElementById('authorbtn').style.display = 'block';
+        document.getElementById('newAuthorDiv').style.display = 'block';
+    }
+    function viewAuthors() {
+        document.getElementById('viewAuthorDiv').style.display = 'block';
+        document.getElementById('newAuthorbtn').style.display = 'block';
+        document.getElementById('authorbtn').style.display = 'none';
+        document.getElementById('newAuthorDiv').style.display = 'none';
+    }
 </script>

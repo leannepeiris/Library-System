@@ -131,20 +131,20 @@ td
     list-style-type: none;
     padding: 0;
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: #333;
 }
 .sidenavList a {
     display: block;
-    color: #000;
+    color: white;
     padding: 8px 16px;
     text-decoration: none;
 }
 .sidenavList a:hover {
-    background-color: #555;
+    background-color: #111;
     color: white;
 }
 .iconBtn {
-    background-color: DodgerBlue;
+    background-color: #333;
     border: none; 
     color: white;
     padding: 12px 16px;

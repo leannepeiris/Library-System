@@ -97,12 +97,12 @@ $status = [
                 <th>Due Date</th>
                 <th>Overdue Charge</th>
                 <th>Status</th>
-                <th>Options</th>
+                <th colspan="2">Options</th>
             </tr>
             </thead>
             <tbody>
             <?php while($row = $result->fetch_assoc()){ ?>
-                <form action="functions.php" method="post"><tr>
+                <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $GLOBALS['bookNames'][$row["book"]]; ?></td>
                     <td><?php echo $GLOBALS['customerNames'][$row["customer"]]; ?></td>
@@ -110,10 +110,11 @@ $status = [
                     <td><?php echo $row["due_date"]; ?></td>
                     <td><?php if ($row["status"] != "2") { echo 'N/A'; } else { echo $row["overdue_charge"];} ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
-                    <input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                    <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td>
-                </tr></form>
+                    <td><button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
+                </tr>
             <?php } ?>
             </tbody>
         </table></center>
@@ -131,12 +132,12 @@ $status = [
                 <th>Due Date</th>
                 <th>Overdue Charge</th>
                 <th>Status</th>
-                <th>Options</th>
+                <th colspan="2">Options</th>
             </tr>
             </thead>
             <tbody>
             <?php while($row = $history->fetch_assoc()) { ?>
-                <form action="functions.php" method="post"><tr>
+                <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["book"]; ?></td>
                     <td><?php echo $row["customer"]; ?></td>
@@ -144,10 +145,11 @@ $status = [
                     <td><?php echo $row["due_date"]; ?></td>
                     <td><?php if ($row["overdue_charge"] == null) { echo "No Charge"; } else echo $row["overdue_charge"]; ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
-                    <input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;
+                    <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td>
-                </tr></form>
+                    <button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
+                </tr>
             <?php } ?>
             </tbody>
         </table></center>
