@@ -2,7 +2,6 @@
 $pageType = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 include ("connection.php");
 session_start();
-
 ?>
 
 <style>
