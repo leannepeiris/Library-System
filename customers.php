@@ -1,13 +1,4 @@
 <?php
-if (empty($_SESSION["logged_in_user"]))
-{
-    header("location:index.php");
-}
-else if ($_SESSION["type"] == "employee")
-{
-    header("location:home.php");
-}
-
 include ("header.php");
 
 $sql = "SELECT * FROM customers";
