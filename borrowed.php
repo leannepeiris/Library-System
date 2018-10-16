@@ -4,6 +4,12 @@ include ("header.php");
 $sql = "SELECT * FROM borrowed_books";
 $result = mysqli_query($GLOBALS['conn'], $sql);
 
+$booksSql = "SELECT * FROM books";
+$books = mysqli_query($GLOBALS['conn'], $booksSql);
+
+$customersSql = "SELECT * FROM customers";
+$customers = mysqli_query($GLOBALS['conn'], $customersSql);
+
 ?>
 
 <ul class="sidenav" style="float:right;">
@@ -17,30 +23,38 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
             <form style="width: content-box" action="functions.php" method="post">
                 <div style="position: absolute">
                     <label>Book</label><br/>
-                    <input type="text" id="firstname" name="firstname" style="width: 40pc"><br/><br/>
+                    <select id="book" name="book" style="width: 40pc">
+                        <?php while($row = $books->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['title']; ?>"><?php echo $row["title"]; ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
                 <div style="float: right;">
                     <label>Customer</label><br/>
-                    <input type="text" id="lastname" name="lastname" style="width: 40pc">
+                    <select id="customer" name="customer" style="width: 40pc">
+                        <?php while($row = $customers->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['firstname']." ".$row['lastname']; ?>"><?php echo $row['firstname']." ".$row['lastname'];; ?></option>
+                        <?php } ?>
+                    </select>
                 </div><br/><br/><br/><br/>
 
                 <div style="position: absolute">
                     <label>Borrowed On</label><br/>
-                    <input type="text" id="email" name="email" style="width: 40pc"><br/><br/>
+                    <input type="date" id="borrowed_date" name="borrowed_date" style="width: 40pc"><br/><br/>
                 </div>
 
                 <div style="float: right;">
                     <label>Due On</label><br/>
-                    <input type="text" id="contact_no" name="contact_no" style="width: 40pc">
+                    <input type="date" id="due_date" name="due_date" style="width: 40pc">
                 </div><br/><br/><br/><br/>
 
                 <div style="position: absolute">
                     <label>Overdue Charge</label><br/>
-                    <input type="text" id="date_of_birth" name="date_of_birth" style="width: 40pc"><br/><br/>
+                    <input type="text" id="overdue_charge" name="overdue_charge" style="width: 40pc"><br/><br/>
                 </div><br/><br/><br/><br/><br/><br/>
 
-                <input type="text" value="addBorrowed" name="function" id="function" style="display: none" > <br/><br/>
+                <input type="text" value="addBorrowedBook" name="function" id="function" style="display: none" > <br/><br/>
                 <input type="submit" value="Save Details" class="loginButton"  style="width: 90pc; height: 45px">
             </form>
         </div></center>
@@ -71,9 +85,9 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
                     <td><?php echo $row["due_date"]; ?></td>
                     <td><?php echo $row["overdue"]; ?></td>
                     <td><?php echo $row["overdue_charge"]; ?></td>
-                    <input type="text" value="deleteBorrowed" name="function" id="function" style="display: none; position: absolute" >
+                    <input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowed" id="deleteBorrowed"><i class="fa fa-trash"></i></button></td>
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;<button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td>
                 </tr></form>
             <?php } ?>
             </tbody>

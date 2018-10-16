@@ -75,6 +75,18 @@ else if($_POST['function'] == 'deleteEmployee')
 {
     deleteEmployee();
 }
+else if($_POST['function'] == 'addBorrowedBook')
+{
+    addBorrowedBook();
+}
+else if($_POST['function'] == 'editBorrowedBook')
+{
+    editBorrowedBook();
+}
+else if($_POST['function'] == 'deleteBorrowedBook')
+{
+    deleteBorrowedBook();
+}
 else 
 {
     logout();
@@ -357,6 +369,59 @@ function deleteEmployee()
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "Record deleted successfully";
         header("location:employees.php");
+    } else {
+        echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
+
+function addBorrowedBook()
+{
+    $book = $_POST['book'];
+    $customer = $_POST['customer'];
+    $borrowed_date = $_POST['borrowed_date'];
+    $due_date = $_POST['due_date'];
+    $overdue = null;
+    $overdue_charge = $_POST['overdue_charge'];
+
+    $sql = "INSERT INTO borrowed_books (book, customer, borrowed_date, due_date, overdue, overdue_charge)
+    VALUES ('$book', '$customer', '$borrowed_date', '$due_date', '$overdue', '$overdue_charge')";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "New record created successfully";
+        header("location:borrowed.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function editBorrowedBook()
+{
+    $id = $_POST['id'];
+    $book = $_POST['book'];
+    $customer = $_POST['customer'];
+    $borrowed_date = $_POST['borrowed_date'];
+    $due_date = $_POST['due_date'];
+    $overdue = $_POST['overdue'];
+    $overdue_charge = $_POST['overdue_charge'];
+
+    $sql = "UPDATE borrowed_books SET book = '$book', customer = '$customer', borrowed_date = '$borrowed_date', due_date = '$due_date', overdue = '$overdue' , overdue_charge = '$overdue_charge' WHERE id = '$id'";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record updated successfully";
+        header("location:borrowed.php");
+
+    } else {
+        echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+    }
+}
+function deleteBorrowedBook()
+{
+    $id = $_POST['id'];
+    $sql = "DELETE FROM borrowed_books WHERE id = $id";
+
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header("location:borrowed.php");
     } else {
         echo "Error deleting record: " . $GLOBALS['conn']->error;
     }
