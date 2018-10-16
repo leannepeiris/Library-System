@@ -47,7 +47,7 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
 </div>
 
 <div id="viewBorrowedDiv">
-    <h1>All Borroweds</h1>
+    <h1>All Borrowed Books</h1>
     <center><table>
             <thead>
             <tr>
