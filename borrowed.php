@@ -46,8 +46,8 @@ $status = [
                 <div style="position: absolute">
                     <label>Book</label><br/>
                     <select id="book" name="book" style="width: 40pc">
-                        <?php while($row = $books->fetch_assoc()) { ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row["title"]; ?></option>
+                        <?php foreach ($bookNames as $key => $name) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $name; ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -55,8 +55,8 @@ $status = [
                 <div style="float: right;">
                     <label>Customer</label><br/>
                     <select id="customer" name="customer" style="width: 40pc">
-                        <?php while($row = $customers->fetch_assoc()) { ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['firstname']." ".$row['lastname'];; ?></option>
+                        <?php foreach ($customerNames as $key => $name) { { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $name; ?></option
                         <?php } ?>
                     </select>
                 </div><br/><br/><br/><br/>
