@@ -35,7 +35,7 @@ $employees = "CREATE TABLE IF NOT EXISTS employees (
 )";
 
 if ($conn->query($employees) === TRUE) {
-    //echo "Table Employees created successfully"; echo "<br/>";
+    createAdmin();
 } else {
     echo "Error creating table: " . $conn->error; echo "<br/>";
 }
@@ -116,5 +116,21 @@ if ($conn->query($borrowed_books) === TRUE) {
     echo "Error creating table: " . $conn->error; echo "<br/>";
 }
 
+function createAdmin()
+{
+    $sql = "SELECT * FROM employees";
+    $result = mysqli_query($GLOBALS['conn'], $sql);
 
+    if ($result->num_rows == 0)
+    {
+        $admin = 'admin'; 
 
+        $sql = "INSERT INTO employees (firstname, lastname, email, password, contact_number, date_of_birth, type)
+        VALUES ('$admin', '$admin', '$admin', '$admin', '$admin', '$admin', '$admin')";
+    
+        if ($GLOBALS['conn']->query($sql) === TRUE) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+        }    
+    }
+}
