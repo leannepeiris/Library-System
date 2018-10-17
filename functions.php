@@ -327,7 +327,7 @@ function addEmployee()
     $password = $_POST['password'];
     $contact_no = $_POST['contact_no'];
     $date_of_birth = $_POST['date_of_birth'];
-    $type = $_POST['$type'];
+    $type = $_POST['type'];
 
     $sql = "INSERT INTO employees (firstname, lastname, email, password, contact_number, date_of_birth, type)
     VALUES ('$firstname', '$lastname', '$email', '$password', '$contact_no', '$date_of_birth', '$type')";
