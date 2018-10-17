@@ -61,7 +61,6 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
     <center><table>
             <thead>
             <tr>
-                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -73,7 +72,6 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
             <tbody>
             <?php while($row = $result->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["firstname"]; ?></td>
                     <td><?php echo $row["lastname"]; ?></td>
                     <td><?php echo $row["email"]; ?></td>

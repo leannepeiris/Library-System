@@ -76,7 +76,6 @@ while($row = $publishers->fetch_assoc()) {
 <center><table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>Title</th>
         <th>Genre</th>
         <th>Author</th>
@@ -87,7 +86,6 @@ while($row = $publishers->fetch_assoc()) {
     <tbody>
         <?php while($row = $books->fetch_assoc()) { ?>
             <tr>
-                <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["title"]; ?></td>
                 <td><?php echo $row["genre"]; ?></td>
                 <td><?php echo $GLOBALS['authorNames'][$row["author"]]; ?></td>

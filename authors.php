@@ -66,7 +66,6 @@ while($row = $publishers->fetch_assoc()) {
 <center><table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Pen Name</th>
@@ -78,7 +77,6 @@ while($row = $publishers->fetch_assoc()) {
     <tbody>
         <?php while($row = $result->fetch_assoc()) { ?>
             <tr>
-                <td><?php echo $row["id"]; ?></td>
                 <td><?php echo $row["firstname"]; ?></td>
                 <td><?php echo $row["lastname"]; ?></td>
                 <td><?php echo $row["penname"]; ?></td>

@@ -87,6 +87,10 @@ else if($_POST['function'] == 'deleteBorrowedBook')
 {
     deleteBorrowedBook();
 }
+else if($_POST['function'] == 'updateStatus')
+{
+    updateStatus();
+}
 else 
 {
     logout();
@@ -381,10 +385,11 @@ function addBorrowedBook()
     $borrowed_date = $_POST['borrowed_date'];
     $due_date = $_POST['due_date'];
     $overdue_charge = $_POST['overdue_charge'];
+    $overdue = 0;
     $status = 0;
 
-    $sql = "INSERT INTO borrowed_books (book, customer, borrowed_date, due_date, overdue_charge, status)
-    VALUES ('$book', '$customer', '$borrowed_date', '$due_date', '$overdue_charge', '$status')";
+    $sql = "INSERT INTO borrowed_books (book, customer, borrowed_date, due_date, overdue_charge, overdue, status)
+    VALUES ('$book', '$customer', '$borrowed_date', '$due_date', '$overdue_charge', '$overdue', '$status')";
 
     if ($GLOBALS['conn']->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -423,5 +428,17 @@ function deleteBorrowedBook()
         header("location:borrowed.php");
     } else {
         echo "Error deleting record: " . $GLOBALS['conn']->error;
+    }
+}
+function updateStatus()
+{ 
+    $id = $_POST['id'];
+    $sql = "UPDATE borrowed_books SET status = '2' WHERE id = '$id'";
+    
+    if ($GLOBALS['conn']->query($sql) === TRUE) {
+        echo "Record Status Updated successfully"; 
+        header("location:borrowed.php");
+    } else {
+        echo "Error updating record: " . $GLOBALS['conn']->error;
     }
 }
