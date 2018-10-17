@@ -120,11 +120,11 @@ function login()
 
 function logout()
 {
+    session_start();
     session_unset(); 
     session_destroy(); 
     header("location:index.php");
 }
-
 function addAuthor()
 {
     $firstname = $_POST['firstname'];
