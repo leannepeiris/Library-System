@@ -16,11 +16,26 @@ label /* style for the all labels */
     font-family: "Modern No. 20";
     font-size: 25px;
 }
-input /* style for the all input fields */
+input, select /* style for the all input and select fields */
 {
     font-family: "Modern No. 20";
     width: 13pc;
     height: 2pc;
+}
+table /* style for the all tables */
+{
+    border-spacing: 30px;
+    border: 1px solid black;
+}
+th
+{
+    font-family: "Modern No. 20";
+    font-size: 30px;
+}
+td
+{
+    font-family: "Modern No. 20";
+    font-size: 25px;
 }
 .loginBox /* style for the login box */
 {
@@ -58,7 +73,6 @@ input /* style for the all input fields */
     overflow: hidden;
     background-color: #333;
 }
-
 .navbarList /* styles for the list in the nav bar */
 {
     float: left;
@@ -71,7 +85,6 @@ input /* style for the all input fields */
     padding: 14px 16px;
     text-decoration: none;
 }
-
 .navbarList a:hover, .dropdown:hover .dropbtn /* styles for when the mouse hovers over the links in the nav bar  */
 {
     background-color: #111;
@@ -112,3 +125,34 @@ input /* style for the all input fields */
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.sidenav {
+    top: 25%;
+    list-style-type: none;
+    padding: 0;
+    width: 200px;
+    background-color: #333;
+}
+.sidenavList a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.sidenavList a:hover {
+    background-color: #111;
+    color: white;
+}
+.iconBtn {
+    background-color: #333;
+    border: none; 
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer; 
+}
+
+.iconBtn:hover {
+    background-color: RoyalBlue;
+}
+
