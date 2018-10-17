@@ -20,8 +20,8 @@ session_start();
     <li class="navbarList"><a href="publishers.php">Publishers</a></li>
     <li class="navbarList"><a href="authors.php">Authors</a></li>
     <li class="navbarList"><a href="books.php">Books</a></li>
-    <li class="navbarList"><a href="borrowed.php">Borrowed Books</a></li>
     <li class="navbarList"><a href="customers.php">Customers</a></li>
+    <li class="navbarList"><a href="borrowed.php">Borrowed Books</a></li>
     <li <?php if($_SESSION["type"] == "employee") { ?> style="display: none" <?php } ?> class="navbarList"><a href="employees.php">Employees</a></li>
     <li class="navbarList" style="float: right">
         <div class="dropdown">
