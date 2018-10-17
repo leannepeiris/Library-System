@@ -146,7 +146,7 @@ $status = [
                 <th>Due Date</th>
                 <th>Overdue Charge</th>
                 <th>Status</th>
-                <th colspan="2">Options</th>
+                <th colspan="3">Options</th>
             </tr>
             </thead>
             <tbody>
