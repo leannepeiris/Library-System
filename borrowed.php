@@ -139,7 +139,6 @@ $status = [
     <center><table>
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Book</th>
                 <th>Customer</th>
                 <th>Borrowed Date</th>
@@ -152,7 +151,6 @@ $status = [
             <tbody>
             <?php while($row = $finalResult->fetch_assoc()){ ?>
                 <tr>
-                    <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $GLOBALS['bookNames'][$row["book"]]; ?></td>
                     <td><?php echo $GLOBALS['customerNames'][$row["customer"]]; ?></td>
                     <td><?php echo $row["borrowed_date"]; ?></td>
@@ -177,7 +175,6 @@ $status = [
     <center><table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Book</th>
                 <th>Customer</th>
                 <th>Borrowed Date</th>
@@ -190,7 +187,6 @@ $status = [
         <tbody>
             <?php while($row = $history->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["book"]; ?></td>
                     <td><?php echo $row["customer"]; ?></td>
                     <td><?php echo $row["borrowed_date"]; ?></td>

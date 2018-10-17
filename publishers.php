@@ -36,7 +36,6 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
     <center><table>
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>City</th>
                 <th colspan="2">Options</th>
@@ -45,7 +44,6 @@ $result = mysqli_query($GLOBALS['conn'], $sql);
             <tbody>
             <?php while($row = $result->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo $row["city"]; ?></td>
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
