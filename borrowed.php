@@ -157,7 +157,7 @@ $status = [
                     <td><?php echo $GLOBALS['customerNames'][$row["customer"]]; ?></td>
                     <td><?php echo $row["borrowed_date"]; ?></td>
                     <td><?php echo $row["due_date"]; ?></td>
-                    <td><?php if ($row["status"] != "2") { echo 'N/A'; } else { echo $row["overdue_charge"];} ?></td>
+                    <td><?php if ($row["overdue"] == "1") { echo $row["overdue_charge"]; } else { echo 'N/A'; } ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
                     <form action="functions.php" method="post"><input type="text" value="updateStatus" name="function" id="function" style="display: none; position: absolute" >
@@ -175,7 +175,7 @@ $status = [
 <div id="historyDiv" style="display: none">
     <h1>History</h1>
     <center><table>
-            <thead>
+        <thead>
             <tr>
                 <th>ID</th>
                 <th>Book</th>
@@ -184,10 +184,10 @@ $status = [
                 <th>Due Date</th>
                 <th>Overdue Charge</th>
                 <th>Status</th>
-                <th colspan="2">Options</th>
+                <th>Options</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <?php while($row = $history->fetch_assoc()) { ?>
                 <tr>
                     <td><?php echo $row["id"]; ?></td>
@@ -197,12 +197,11 @@ $status = [
                     <td><?php echo $row["due_date"]; ?></td>
                     <td><?php if ($row["overdue"] == 1) { echo $row["overdue_charge"]; } else { echo "No Charge"; } ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
-                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
                     <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                     <td><button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
                 </tr>
             <?php } ?>
-            </tbody>
-        </table></center>
+        </tbody>
+    </table></center>
 </div>
