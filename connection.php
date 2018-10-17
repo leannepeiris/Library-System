@@ -106,6 +106,7 @@ $borrowed_books = "CREATE TABLE IF NOT EXISTS  borrowed_books (
     borrowed_date VARCHAR(191),
     due_date VARCHAR(191),
     overdue_charge VARCHAR(191),
+    overdue VARCHAR(191),
     status VARCHAR(191),
     created_at TIMESTAMP
 )";

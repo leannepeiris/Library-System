@@ -1,9 +1,8 @@
 <?php
 include ("header.php");
 
-$sql = "SELECT * FROM borrowed_books WHERE 'status' != 2";
+$sql = "SELECT * FROM borrowed_books WHERE status != '2'";
 $result = mysqli_query($GLOBALS['conn'], $sql);
-
 if ($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc()){
@@ -11,7 +10,7 @@ if ($result->num_rows > 0)
         $today = new DateTime();
         if($due_date < $today) {
             $id = $row['id'];
-            $sql = "UPDATE borrowed_books SET status = '1'WHERE id = '$id'";
+            $sql = "UPDATE borrowed_books SET status = '1', overdue = '1' WHERE id = '$id'";
     
             if ($GLOBALS['conn']->query($sql) === TRUE) {  
     
@@ -22,11 +21,11 @@ if ($result->num_rows > 0)
     }
 }
 
-$finalSql = "SELECT * FROM borrowed_books WHERE 'status' != 2";
+$finalSql = "SELECT * FROM borrowed_books WHERE status != '2'";
 $finalResult = mysqli_query($GLOBALS['conn'], $finalSql); 
 
-$historySql = "SELECT * FROM borrowed_books WHERE 'status' = 2";
-$history = mysqli_query($GLOBALS['conn'], $sql);
+$historySql = "SELECT * FROM borrowed_books WHERE status = '2'";
+$history = mysqli_query($GLOBALS['conn'], $historySql);
 
 $booksSql = "SELECT * FROM books";
 $books = mysqli_query($GLOBALS['conn'], $booksSql);
@@ -56,6 +55,35 @@ $status = [
     2 => 'Completed'
 ];
 ?>
+
+<script>
+    function newBorrowed() {
+        document.getElementById('viewBorrowedDiv').style.display = 'none';
+        document.getElementById('newBorrowedbtn').style.display = 'none';
+        document.getElementById('historybtn').style.display = 'none';
+        document.getElementById('historyDiv').style.display = 'none';
+        document.getElementById('borrowedbtn').style.display = 'block';
+        document.getElementById('newBorrowedDiv').style.display = 'block';
+    }
+
+    function viewBorroweds() {
+        document.getElementById('viewBorrowedDiv').style.display = 'block';
+        document.getElementById('newBorrowedbtn').style.display = 'block';
+        document.getElementById('historybtn').style.display = 'block';
+        document.getElementById('historyDiv').style.display = 'none';
+        document.getElementById('borrowedbtn').style.display = 'none';
+        document.getElementById('newBorrowedDiv').style.display = 'none';
+    }
+
+    function viewHistory() {
+        document.getElementById('viewBorrowedDiv').style.display = 'none';
+        document.getElementById('newBorrowedbtn').style.display = 'block';
+        document.getElementById('historyDiv').style.display = 'block';
+        document.getElementById('historybtn').style.display = 'none';
+        document.getElementById('borrowedbtn').style.display = 'block';
+        document.getElementById('newBorrowedDiv').style.display = 'none';
+    }
+</script>
 
 <ul class="sidenav" style="float:right;">
     <li class="sidenavList" id="newBorrowedbtn"><a href="#" onclick="newBorrowed()" >Add New Book</a></li>
@@ -132,7 +160,9 @@ $status = [
                     <td><?php if ($row["status"] != "2") { echo 'N/A'; } else { echo $row["overdue_charge"];} ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
-                    <td><button class="iconBtn"><i class="fa fa-check"></i></button></td>
+                    <form action="functions.php" method="post"><input type="text" value="updateStatus" name="function" id="function" style="display: none; position: absolute" >
+                    <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
+                    <td><button class="iconBtn" name="updateStatus" id="updateStatus"><i class="fa fa-check"></i></button></td></form>
                     <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                     <td><button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
@@ -165,43 +195,14 @@ $status = [
                     <td><?php echo $row["customer"]; ?></td>
                     <td><?php echo $row["borrowed_date"]; ?></td>
                     <td><?php echo $row["due_date"]; ?></td>
-                    <td><?php if ($row["overdue_charge"] == null) { echo "No Charge"; } else echo $row["overdue_charge"]; ?></td>
+                    <td><?php if ($row["overdue"] == 1) { echo $row["overdue_charge"]; } else { echo "No Charge"; } ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
-                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button>&ensp;
+                    <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
                     <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
-                    <button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
+                    <td><button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
                 </tr>
             <?php } ?>
             </tbody>
         </table></center>
 </div>
-
-<script>
-    function newBorrowed() {
-        document.getElementById('viewBorrowedDiv').style.display = 'none';
-        document.getElementById('newBorrowedbtn').style.display = 'none';
-        document.getElementById('historybtn').style.display = 'none';
-        document.getElementById('historyDiv').style.display = 'none';
-        document.getElementById('borrowedbtn').style.display = 'block';
-        document.getElementById('newBorrowedDiv').style.display = 'block';
-    }
-
-    function viewBorroweds() {
-        document.getElementById('viewBorrowedDiv').style.display = 'block';
-        document.getElementById('newBorrowedbtn').style.display = 'block';
-        document.getElementById('historybtn').style.display = 'block';
-        document.getElementById('historyDiv').style.display = 'none';
-        document.getElementById('borrowedbtn').style.display = 'none';
-        document.getElementById('newBorrowedDiv').style.display = 'none';
-    }
-
-    function viewHistory() {
-        document.getElementById('viewBorrowedDiv').style.display = 'none';
-        document.getElementById('newBorrowedbtn').style.display = 'block';
-        document.getElementById('historyDiv').style.display = 'block';
-        document.getElementById('historybtn').style.display = 'none';
-        document.getElementById('borrowedbtn').style.display = 'block';
-        document.getElementById('newBorrowedDiv').style.display = 'none';
-    }
-</script>
