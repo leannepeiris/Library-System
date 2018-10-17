@@ -17,8 +17,8 @@ session_start();
 
 <ul class="navbar">
     <li class="navbarList"><a href="home.php">Dashboard</a></li>
-    <li class="navbarList"><a href="authors.php">Authors</a></li>
     <li class="navbarList"><a href="publishers.php">Publishers</a></li>
+    <li class="navbarList"><a href="authors.php">Authors</a></li>
     <li class="navbarList"><a href="books.php">Books</a></li>
     <li class="navbarList"><a href="borrowed.php">Borrowed Books</a></li>
     <li class="navbarList"><a href="customers.php">Customers</a></li>
