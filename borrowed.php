@@ -4,6 +4,27 @@ include ("header.php");
 $sql = "SELECT * FROM borrowed_books WHERE 'status' != 2";
 $result = mysqli_query($GLOBALS['conn'], $sql);
 
+if ($result->num_rows > 0)
+{
+    while($row = $result->fetch_assoc()){
+        $due_date = new DateTime($row['due_date']);
+        $today = new DateTime();
+        if($due_date < $today) {
+            $id = $row['id'];
+            $sql = "UPDATE borrowed_books SET status = '1'WHERE id = '$id'";
+    
+            if ($GLOBALS['conn']->query($sql) === TRUE) {  
+    
+            } else {
+                echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+            }
+        }
+    }
+}
+
+$finalSql = "SELECT * FROM borrowed_books WHERE 'status' != 2";
+$finalResult = mysqli_query($GLOBALS['conn'], $finalSql); 
+
 $historySql = "SELECT * FROM borrowed_books WHERE 'status' = 2";
 $history = mysqli_query($GLOBALS['conn'], $sql);
 
@@ -101,7 +122,7 @@ $status = [
             </tr>
             </thead>
             <tbody>
-            <?php while($row = $result->fetch_assoc()){ ?>
+            <?php while($row = $finalResult->fetch_assoc()){ ?>
                 <tr>
                     <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $GLOBALS['bookNames'][$row["book"]]; ?></td>
@@ -111,6 +132,7 @@ $status = [
                     <td><?php if ($row["status"] != "2") { echo 'N/A'; } else { echo $row["overdue_charge"];} ?></td>
                     <td><?php echo $GLOBALS['status'][$row["status"]] ?></td>
                     <td><button class="iconBtn"><i class="fa fa-pencil"></i></button></td>
+                    <td><button class="iconBtn"><i class="fa fa-check"></i></button></td>
                     <form action="functions.php" method="post"><input type="text" value="deleteBorrowedBook" name="function" id="function" style="display: none; position: absolute" >
                     <input type="text" value="<?php echo $row["id"]; ?>" name="id" id="id" style="display: none; position: absolute" >
                     <td><button class="iconBtn" name="deleteBorrowedBook" id="deleteBorrowedBook"><i class="fa fa-trash"></i></button></td></form>
